@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class Pet {
     // instance variables
     private String animal;
@@ -12,8 +13,9 @@ public class Pet {
     private int energy = 100;
     private int level = 0;
     private Pet spouse;
-    private String inventory;
+    // public Pet inventoinventory[];
 
+    ArrayList<Pet> pets = new ArrayList<>();
 
     // overloaded constructors
     // 1. default no-parameter constructor with randomly generated animal and name
@@ -62,7 +64,8 @@ public class Pet {
             color = "white";
         }
 
-        age = (int) (Math.random() * 25) + 1;
+        age = (int) (Math.random() * 25);
+        pets.add(this);
     }
 
     // 2. user-decided inputs
@@ -72,6 +75,7 @@ public class Pet {
         this.gender = gender;
         this.color = color;
         this.age = age;
+        pets.add(this);
     }
 
     // setters & getters
@@ -101,7 +105,7 @@ public class Pet {
         System.out.println("꒰ঌ♡໒꒱");
         happiness += 20;
         spousePet.addHappiness(20);
-        spousePet.setSpouse(Pet); //?
+        spousePet.setSpouse(this); //?
         int random = (int)(Math.random() * 2) + 1;
         if (random == 1) {
             procreate(spousePet);
@@ -141,10 +145,11 @@ public class Pet {
             }
         }
 
+        String babyAnimal;
         if (animal.equals(spousePet.animal)) {
-            String babyAnimal = animal;
+            babyAnimal = animal;
         } else {
-            String babyAnimal = animal + "-" + spousePet.animal;
+            babyAnimal = animal + "-" + spousePet.animal;
         }
 
 
@@ -203,17 +208,17 @@ public class Pet {
         }
     }
 
-    public Pet foundPet() {
+    public void foundPet() {
         System.out.println("You come across a new pet!");
         Pet newPet = new Pet();
         System.out.println(newPet.petIntroduction());
         System.out.println("Would you like to keep this?");
-        return newPet;
+        pets.add(newPet);
     }
 
     public void keepPet(String userInput, Pet newPet) {
-        if (userInput().equals("Y")) {
-            inventory += newPet;
+        if (userInput.equals("Y")) {
+            pets.add(newPet);
             System.out.println("Hooray! " + newPet.name + " has been added to inventory.");
         } else {
             System.out.println("Alright! " + newPet.name + " has been released into the wild.");
@@ -240,7 +245,7 @@ public class Pet {
         }
     }
     public boolean fainted() {
-        if (health > 0) {
+        if (health < 0) {
             System.out.println(name + " has fainted!\nHelp " + objectPronoun + " revive by feeding " + objectPronoun + " a treat.");
             return true;
         } else {

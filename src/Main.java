@@ -36,12 +36,25 @@ public class Main {
             System.out.println("[2] Take a walk");
             System.out.println("[3] Feed your pet");
             System.out.println("[4] Find pet love");
-            System.out.println("[5] Create a pet");
+            System.out.println("[5] Create a new pet");
 
             selection = scan.nextInt();
+            if (selection == 0) {
+
+            } else if (selection == 1) {
+
+            } else if (selection == 2) {
+
+            } else if (selection == 3) {
+
+            } else if (selection == 4) {
+
+            } else if (selection == 5) {
+
+            }
         }
 
-
+        System.out.println("Thanks for playing! ");
 
     }
 }
