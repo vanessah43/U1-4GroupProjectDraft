@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 public class Pet {
-    // instance variables
+    /* instance variables */
     private String animal;
     private String name;
     private String gender;
@@ -13,11 +13,10 @@ public class Pet {
     private int energy = 100;
     private int level = 0;
     private Pet spouse;
-    // public Pet inventoinventory[];
 
-    ArrayList<Pet> pets = new ArrayList<>();
+    //ArrayList<Pet> pets = new ArrayList<>();
 
-    // overloaded constructors
+    /* overloaded constructors */
     // 1. default no-parameter constructor with randomly generated animal and name
     public Pet () {
         int random = (int) (Math.random() * 5) + 1;
@@ -66,6 +65,8 @@ public class Pet {
 
         age = (int) (Math.random() * 25);
         pets.add(this);
+        genderSymbol();
+        decidePronoun();
     }
 
     // 2. user-decided inputs
@@ -76,9 +77,14 @@ public class Pet {
         this.color = color;
         this.age = age;
         pets.add(this);
+        genderSymbol();
+        decidePronoun();
     }
 
-    // setters & getters
+    /* setters & getters */
+    public String getName() {
+        return name;
+    }
     public int getEnergy() {
         return energy;
     }
@@ -87,7 +93,18 @@ public class Pet {
         return input;
     }
 
-    // public methods
+    /* public ArrayList<Pet> getPets() {
+        return pets;
+    } */
+
+    public void getPets() {
+        for (int i = 0; i < pets.size();i++)
+        {
+            System.out.println(pets.get(i));
+        }
+    }
+
+    /* public methods */
     public void decidePronoun() {
         if (gender.equals("female")) {
             subjectPronoun = "she";
@@ -100,6 +117,14 @@ public class Pet {
             objectPronoun = "it";
         }
     }
+
+    public void genderSymbol() {
+        if (gender.equals("female")) {
+            name += " ♀";
+        } else if (gender.equals("male")) {
+            name += " ♂";
+        }
+    }
     public void love (Pet spousePet) {
         System.out.println(name + " and " + spousePet.name + " have fallen in love!");
         System.out.println("꒰ঌ♡໒꒱");
@@ -108,12 +133,12 @@ public class Pet {
         spousePet.setSpouse(this); //?
         int random = (int)(Math.random() * 2) + 1;
         if (random == 1) {
-            procreate(spousePet);
+            // procreate(spousePet);
         }
         System.out.println();
     }
 
-    public Pet procreate(Pet spousePet) {
+    public Pet procreate(Pet spousePet, String babyName) {
         int random = (int)(Math.random() * 2) + 1;
         String babyGender;
         if (random == 1) {
@@ -122,7 +147,7 @@ public class Pet {
             babyGender = "male";
         }
 
-        String babyColor;
+        String babyColor = "";
         if (color.equals(spousePet.color)) {
             babyColor = color;
         } else {
@@ -153,7 +178,7 @@ public class Pet {
         }
 
 
-        Pet newPet = new Pet(receiveInput(), babyAnimal, babyGender, babyColor, 0);
+        Pet newPet = new Pet(babyName, babyAnimal, babyGender, babyColor, 0);
         return newPet;
     }
 
@@ -253,7 +278,7 @@ public class Pet {
         }
     }
 
-    // private helper methods
+    /* private helper methods */
     private void addHappiness(int points) {
         happiness += points;
     }
@@ -270,5 +295,5 @@ public class Pet {
     }
 
 
-    // closing brace
+    /* closing brace */
 }
